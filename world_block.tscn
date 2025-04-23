@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c84woxsfa55j8"]
+
+[ext_resource type="Script" path="res://WorldBlock.cs" id="1_70rbf"]
+
+[sub_resource type="Gradient" id="Gradient_bqv0l"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_02aat"]
+gradient = SubResource("Gradient_bqv0l")
+fill_from = Vector2(0.606838, 0.974359)
+fill_to = Vector2(0.611111, 0.542735)
+
+[node name="WorldBlock" type="StaticBody2D"]
+position = Vector2(3000, -645)
+scale = Vector2(2.79999, 1.96)
+script = ExtResource("1_70rbf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(1, 0.875)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.0117647, 0.509804, 0.415686, 1)
+texture = SubResource("GradientTexture2D_02aat")

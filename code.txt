@@ -1,0 +1,134 @@
+		Vector2 velocity = Velocity;
+
+		// Add the gravity.
+		if (!IsOnFloor())
+			velocity.Y += gravity * (float)delta;
+
+		// Handle Jump.
+		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+			velocity.Y = JumpVelocity;
+
+		// Get the input direction and handle the movement/deceleration.
+		// As good practice, you should replace UI actions with custom gameplay actions.
+		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		if (direction != Vector2.Zero)
+		{
+			velocity.X = direction.X * Speed;
+		}
+		else
+		{
+			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+		}
+
+		Velocity = velocity;
+		MoveAndSlide();
+
+
+
+
+
+
+
+
+		using Godot;
+using System;
+
+public partial class PointJumper : CharacterBody2D
+{
+	public const float Speed = 600.0f;
+	
+	[Export]
+	public float JumpAngle = 1f;
+	public const float JumpForce = 1600.0f;
+	private bool isJumping = false;
+	private bool showAng = false;
+	// Get the gravity from the project settings to be synced with RigidBody nodes.
+	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+
+	private float HoldTime = 0f;
+	private float MaxHold = 1f;
+	public override void _PhysicsProcess(double delta)
+	{
+		Vector2 velocity = Velocity;
+
+		// Add the gravity.
+		if (!IsOnFloor() && !isJumping) {
+			velocity.Y += (gravity * 1.5f) * (float)delta;
+
+		} else {
+			isJumping = false;
+		}
+		
+		if (Input.IsActionJustPressed("ui_select") && IsOnFloor()) {
+			HoldTime = 0;
+			showAng = true;
+		}
+		if (Input.IsActionPressed("ui_select") && IsOnFloor()) {
+			HoldTime = Mathf.Min(HoldTime + (float)delta, MaxHold);
+		}
+
+		if (Input.IsActionJustReleased("ui_select") && IsOnFloor()) {
+			
+			var x = Input.GetAxis("ui_left", "ui_right");
+
+			var angleOfAttack = Mathf.Lerp(1, 75, HoldTime / MaxHold);
+			
+			velocity = JumpTowardsAngle(angleOfAttack, x);
+			showAng = false;
+		}
+
+
+		// Get the input direction and handle the movement/deceleration.
+		// As good practice, you should replace UI actions with custom gameplay actions.
+		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		if (direction != Vector2.Zero && IsOnFloor() && !Input.IsActionPressed("ui_select"))
+		{
+			velocity.X = direction.X * Speed;
+		}
+		else if(IsOnFloor() && !isJumping)
+		{
+			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+		}
+
+		Velocity = velocity;
+		MoveAndSlide();
+		QueueRedraw();
+	}
+
+	private Vector2 JumpTowardsMouse() {
+		Vector2 velocity = Velocity;
+		var mousePos = GetGlobalMousePosition();
+		var direction = (mousePos - GlobalPosition).Normalized();
+		velocity = direction * JumpForce;
+		velocity.Y -= JumpForce * 0.5f;
+
+		isJumping = true;
+		return velocity;
+	}
+
+	private Vector2 JumpTowardsAngle(float angle, float x) {
+		Vector2 velocity = Velocity;
+		var angle_radians = Mathf.DegToRad(angle);
+
+		velocity.X = JumpForce * Mathf.Cos(angle_radians);
+		velocity.Y = -JumpForce * Mathf.Sin(angle_radians);
+		velocity.X = velocity.X * x;
+		isJumping = true;
+		return velocity;
+	}
+
+    public override void _Draw()
+    {
+		if (isJumping == false && showAng) {
+			var angleOfAttack = Mathf.Lerp(1, 75, HoldTime / MaxHold);
+			var rad_angle = Mathf.DegToRad(angleOfAttack);
+
+			var v = new Vector2(
+				JumpForce * Mathf.Cos(rad_angle),
+				-JumpForce * Mathf.Sin(rad_angle)
+			);
+
+			DrawLine(Vector2.Zero, v, new Color(1, 0, 0), 2);
+		}
+    }
+}

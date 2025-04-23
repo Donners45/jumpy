@@ -1,0 +1,163 @@
+[gd_scene load_steps=17 format=3 uid="uid://braoe12cwrdur"]
+
+[ext_resource type="Texture2D" uid="uid://duq6p0keb0ups" path="res://icon.svg" id="1_4xqjp"]
+[ext_resource type="PackedScene" uid="uid://c84woxsfa55j8" path="res://world_block.tscn" id="1_wrxy0"]
+[ext_resource type="Script" path="res://PointJumper.cs" id="3_jtceo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8c7v"]
+size = Vector2(3014.94, 141)
+
+[sub_resource type="Gradient" id="Gradient_xpkpb"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_klnae"]
+gradient = SubResource("Gradient_xpkpb")
+
+[sub_resource type="Gradient" id="Gradient_j2wfh"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nuoeh"]
+gradient = SubResource("Gradient_j2wfh")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spdah"]
+size = Vector2(254.671, 722.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msxhh"]
+size = Vector2(455, 150.5)
+
+[sub_resource type="Gradient" id="Gradient_c57b1"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fdplr"]
+gradient = SubResource("Gradient_c57b1")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_750xl"]
+size = Vector2(25.4878, 85.2184)
+
+[sub_resource type="Gradient" id="Gradient_rnoh6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a2vlg"]
+gradient = SubResource("Gradient_rnoh6")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qbs20"]
+radius = 8.8889
+height = 29.4118
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(668.47, 610)
+scale = Vector2(1.8, 1)
+shape = SubResource("RectangleShape2D_n8c7v")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+position = Vector2(-2, 1)
+scale = Vector2(11.7845, 128.75)
+texture = SubResource("GradientTexture1D_klnae")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(632, 360)
+scale = Vector2(1.04818, 1.24908)
+polygon = PackedVector2Array(-133.564, -116.085, 190.595, 159.13, -167, 159)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionPolygon2D"]
+position = Vector2(-25.7588, 50.4371)
+rotation = 0.733038
+scale = Vector2(4.98528, 1.99522)
+skew = 0.509636
+texture = SubResource("GradientTexture2D_nuoeh")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(398.625, 173.875)
+shape = SubResource("RectangleShape2D_spdah")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D/CollisionShape2D3"]
+position = Vector2(-1, 35.375)
+scale = Vector2(1.00781, 792.5)
+texture = SubResource("GradientTexture1D_klnae")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1257, -140)
+shape = SubResource("RectangleShape2D_msxhh")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D4"]
+position = Vector2(-8.01086e-05, -0.250003)
+scale = Vector2(1.76172, 143)
+texture = SubResource("GradientTexture1D_fdplr")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2154, 199)
+scale = Vector2(8.2, 8.24)
+shape = SubResource("RectangleShape2D_750xl")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D5"]
+position = Vector2(0.060977, 0.230584)
+scale = Vector2(0.369665, 1.3084)
+texture = SubResource("GradientTexture2D_a2vlg")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(289, -614)
+shape = SubResource("RectangleShape2D_spdah")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D/CollisionShape2D6"]
+position = Vector2(-1, 35)
+scale = Vector2(1.00781, 792.5)
+texture = SubResource("GradientTexture1D_klnae")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(965, -686)
+rotation = -0.0597897
+scale = Vector2(1.22159, 0.472591)
+shape = SubResource("RectangleShape2D_msxhh")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D7"]
+position = Vector2(-8.01086e-05, -0.250003)
+scale = Vector2(1.76172, 143)
+texture = SubResource("GradientTexture1D_fdplr")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3718, -851)
+scale = Vector2(5.39781, -0.153037)
+shape = SubResource("RectangleShape2D_spdah")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D/CollisionShape2D8"]
+position = Vector2(-1, 35)
+scale = Vector2(1.00781, 792.5)
+texture = SubResource("GradientTexture1D_klnae")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2022, -1688)
+rotation = -0.0597897
+scale = Vector2(1.22159, 0.472591)
+shape = SubResource("RectangleShape2D_msxhh")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D9"]
+position = Vector2(-8.01086e-05, -0.250003)
+scale = Vector2(1.76172, 143)
+texture = SubResource("GradientTexture1D_fdplr")
+
+[node name="WorldBlock" parent="StaticBody2D" node_paths=PackedStringArray("Polygon") instance=ExtResource("1_wrxy0")]
+position = Vector2(2088, -645)
+Polygon = NodePath("Polygon2D2")
+
+[node name="Polygon2D2" type="Polygon2D" parent="StaticBody2D/WorldBlock"]
+polygon = PackedVector2Array(58.5715, -8.67346, -64.6431, -0.510193, -66.4289, 186.735, 69.2859, 186.224)
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(1365, -397)
+floor_stop_on_slope = false
+floor_max_angle = 0.698132
+script = ExtResource("3_jtceo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+scale = Vector2(7.2, 5.28)
+shape = SubResource("CapsuleShape2D_qbs20")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2"]
+texture = ExtResource("1_4xqjp")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D2"]
+position = Vector2(12, -96)
+zoom = Vector2(0.49, 0.49)
+
+[node name="RopeLine" type="Line2D" parent="CharacterBody2D2"]
+default_color = Color(0.47451, 0.52549, 0.917647, 1)
