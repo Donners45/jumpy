@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://braoe12cwrdur"]
+[gd_scene load_steps=18 format=3 uid="uid://braoe12cwrdur"]
 
 [ext_resource type="Texture2D" uid="uid://duq6p0keb0ups" path="res://icon.svg" id="1_4xqjp"]
 [ext_resource type="PackedScene" uid="uid://c84woxsfa55j8" path="res://world_block.tscn" id="1_wrxy0"]
@@ -35,6 +35,8 @@ size = Vector2(25.4878, 85.2184)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a2vlg"]
 gradient = SubResource("Gradient_rnoh6")
+
+[sub_resource type="SystemFont" id="SystemFont_nqr5i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qbs20"]
 radius = 8.8889
@@ -138,9 +140,12 @@ texture = SubResource("GradientTexture1D_fdplr")
 [node name="WorldBlock" parent="StaticBody2D" node_paths=PackedStringArray("Polygon") instance=ExtResource("1_wrxy0")]
 position = Vector2(2088, -645)
 Polygon = NodePath("Polygon2D2")
+Font = SubResource("SystemFont_nqr5i")
 
 [node name="Polygon2D2" type="Polygon2D" parent="StaticBody2D/WorldBlock"]
-polygon = PackedVector2Array(58.5715, -8.67346, -64.6431, -0.510193, -66.4289, 186.735, 69.2859, 186.224)
+position = Vector2(1, 1)
+color = Color(1, 1, 1, 0.517647)
+polygon = PackedVector2Array(252.93, 17.3673, 127.929, 46.4489, 76.1431, 231.653, 295.358, 197.959)
 
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
 position = Vector2(1365, -397)
