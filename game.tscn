@@ -36,7 +36,7 @@ size = Vector2(25.4878, 85.2184)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a2vlg"]
 gradient = SubResource("Gradient_rnoh6")
 
-[sub_resource type="SystemFont" id="SystemFont_nqr5i"]
+[sub_resource type="SystemFont" id="SystemFont_ucjr6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qbs20"]
 radius = 8.8889
@@ -140,7 +140,8 @@ texture = SubResource("GradientTexture1D_fdplr")
 [node name="WorldBlock" parent="StaticBody2D" node_paths=PackedStringArray("Polygon") instance=ExtResource("1_wrxy0")]
 position = Vector2(2088, -645)
 Polygon = NodePath("Polygon2D2")
-Font = SubResource("SystemFont_nqr5i")
+Font = SubResource("SystemFont_ucjr6")
+ShowDebug = true
 
 [node name="Polygon2D2" type="Polygon2D" parent="StaticBody2D/WorldBlock"]
 position = Vector2(1, 1)

@@ -63,14 +63,14 @@ public partial class player : CharacterBody2D
 		var rad_angle = Mathf.DegToRad(angle);
 		// var debug_velocity = Vector2(
 		// 	frameForce * Mathf.Cos(rad_angle),
-        // 	-frameForce * Mathf.Sin(rad_angle)
-    	// );
+		// 	-frameForce * Mathf.Sin(rad_angle)
+		// );
 		var v = new Vector2(
 			frameForce * Mathf.Cos(rad_angle),
-        	-frameForce * Mathf.Sin(rad_angle)
+			-frameForce * Mathf.Sin(rad_angle)
 		);
 
 		var end_point = Vector2.Zero + v * 0.5f;
-    	DrawLine(Vector2.Zero, Velocity, new Color(1, 0, 0), 2);
+		DrawLine(Vector2.Zero, Velocity, new Color(1, 0, 0), 2);
 	}
 }

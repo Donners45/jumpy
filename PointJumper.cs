@@ -32,35 +32,35 @@ public partial class PointJumper : CharacterBody2D
 		_ropeLine = GetNode<Line2D>("RopeLine");
 	}
 
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
 		if (_isGrappled)
 		{
 			_ropeLine.Visible = true;
-        Vector2 playerLocal = _ropeLine.ToLocal(GlobalPosition);
-        Vector2 grappleLocal = _ropeLine.ToLocal(_grapplePoint);
+		Vector2 playerLocal = _ropeLine.ToLocal(GlobalPosition);
+		Vector2 grappleLocal = _ropeLine.ToLocal(_grapplePoint);
 
-        _ropeLine.Points = new Vector2[] { playerLocal, grappleLocal };
+		_ropeLine.Points = new Vector2[] { playerLocal, grappleLocal };
 		}
 		else
 		{
 			_ropeLine.Visible = false;
 		}
-    }
+	}
 
-    public override void _UnhandledInput(InputEvent @event)
+	public override void _UnhandledInput(InputEvent @event)
 {
-    if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
-    {
-        if (Input.IsKeyLabelPressed(Key.R)) {
+	if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
+	{
+		if (Input.IsKeyLabelPressed(Key.R)) {
 			Position = _startPos;
 		}
-      
+	  
 		if (Input.IsKeyLabelPressed(Key.T)) {
 			_startPos = Position;
 		}
-    }
+	}
 }
 
 	public override void _PhysicsProcess(double delta)
@@ -175,25 +175,25 @@ public partial class PointJumper : CharacterBody2D
 	private void TryShootGrapple() {
 		
 		Vector2 mousePos = GetGlobalMousePosition();
-        Vector2 direction = (mousePos - GlobalPosition).Normalized();
+		Vector2 direction = (mousePos - GlobalPosition).Normalized();
 
-        // Raycast to detect surface
-        var space = GetWorld2D().DirectSpaceState;
+		// Raycast to detect surface
+		var space = GetWorld2D().DirectSpaceState;
 		var query = PhysicsRayQueryParameters2D.Create(GlobalPosition, GlobalPosition + direction * _ropeLength);
-        var result = space.IntersectRay(query);
+		var result = space.IntersectRay(query);
 
-        if (result.Count > 0)
-        {
+		if (result.Count > 0)
+		{
 			GD.Print("Grapple set");
-            _grapplePoint = (Vector2)result["position"];
-            _isGrappled = true;
-            // Optionally reset vertical speed for clean swing
-            //Velocity.Y = 0;
-        }
+			_grapplePoint = (Vector2)result["position"];
+			_isGrappled = true;
+			// Optionally reset vertical speed for clean swing
+			//Velocity.Y = 0;
+		}
 	}
 
-    private Vector2 ApplyGrappleForce(float dt)
-    {
+	private Vector2 ApplyGrappleForce(float dt)
+	{
 		Vector2 toGrapple = GlobalPosition - _grapplePoint;
 		var velocity = Velocity;
 		float distance = toGrapple.Length();
@@ -218,10 +218,10 @@ public partial class PointJumper : CharacterBody2D
 		Vector2 swingForce = new Vector2(-toGrapple.Y, toGrapple.X).Normalized() * input * 600f;
 		velocity += swingForce * dt;
 		return velocity;
-    }
+	}
 
-    public override void _Draw()
-    {
+	public override void _Draw()
+	{
 		if (isJumping == false && showAng) {
 			var angleOfAttack = Mathf.Lerp(1, 75, HoldTime / MaxHold);
 			var rad_angle = Mathf.DegToRad(angleOfAttack);
@@ -233,5 +233,5 @@ public partial class PointJumper : CharacterBody2D
 
 			DrawLine(Vector2.Zero, v, new Color(1, 0, 0), 2);
 		}
-    }
+	}
 }
