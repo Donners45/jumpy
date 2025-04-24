@@ -6,7 +6,7 @@ public partial class PointJumper : CharacterBody2D
 	public const float Speed = 600.0f;
 	
 	private float[,] JumpForces = {
-		{ 15f, 3000f },
+		{ 7f, 3000f },
 		{ 30f, 2000f },
 		{ 45f, 1800f },
 		{ 55f, 1700f }
@@ -74,7 +74,7 @@ public partial class PointJumper : CharacterBody2D
 
 		// Add the gravity.
 		if (!IsOnFloor() && !isJumping) {
-			velocity.Y += (gravity * 2f) * (float)delta;	
+			velocity.Y += (gravity * 2f) * (float)delta;
 			
 			// Handle if you bounce
 			// todo: bug when bouncing when you are already touching a wall
@@ -96,14 +96,24 @@ public partial class PointJumper : CharacterBody2D
 			isJumping = false;
 			isBouncing = false;
 		}
-		
-		if (Input.IsMouseButtonPressed(MouseButton.Left)) {
+
+		if (Input.IsMouseButtonPressed(MouseButton.Left) && _isGrappled) {
+			_isGrappled = false;
+		}
+
+
+		if (Input.IsMouseButtonPressed(MouseButton.Left) && !_isGrappled) {
 			TryShootGrapple();
 		}
 
-		if (Input.IsMouseButtonPressed(MouseButton.Right) && _isGrappled) {
+		// Grapple Jump
+		if (Input.IsActionJustPressed("jump") && _isGrappled && !IsOnFloor()) {
+			Vector2 currectDirection = velocity.Normalized();
+			float baseBoost = Velocity.Length() * 0.5f;
+			float boostStrength = Mathf.Clamp(baseBoost, 50f, 800f);
+			GD.Print("grapple jump! boost: ", baseBoost, " boosted: ", boostStrength);
+			velocity += currectDirection * boostStrength;
 			_isGrappled = false;
-
 		}
 
 		// Start Jump
@@ -131,7 +141,7 @@ public partial class PointJumper : CharacterBody2D
 			var frc = JumpForces[stageI, 1];
 
 			GD.Print("jumping at: ", ang, " with frc: ", frc, " with x axis: ", x);
-			velocity = JumpTowardsAngle(ang, frc ,x);
+			velocity = JumpTowardsAngle(ang, frc, x);
 			showAng = false;
 		}
 
@@ -147,20 +157,11 @@ public partial class PointJumper : CharacterBody2D
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 		}
 
+
 		Velocity = velocity;
+		
 		MoveAndSlide();
 		QueueRedraw();
-	}
-
-	private Vector2 JumpTowardsMouse() {
-		Vector2 velocity = Velocity;
-		var mousePos = GetGlobalMousePosition();
-		var direction = (mousePos - GlobalPosition).Normalized();
-		velocity = direction * JumpForce;
-		velocity.Y -= JumpForce * 0.5f;
-
-		isJumping = true;
-		return velocity;
 	}
 
 	private Vector2 JumpTowardsAngle(float angle, float force, float x) {
@@ -221,7 +222,7 @@ public partial class PointJumper : CharacterBody2D
 	}
 
 	public override void _Draw()
-	{
+	{		
 		if (isJumping == false && showAng) {
 			var angleOfAttack = Mathf.Lerp(1, 75, HoldTime / MaxHold);
 			var rad_angle = Mathf.DegToRad(angleOfAttack);

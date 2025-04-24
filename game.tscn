@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://braoe12cwrdur"]
+[gd_scene load_steps=16 format=3 uid="uid://braoe12cwrdur"]
 
 [ext_resource type="Texture2D" uid="uid://duq6p0keb0ups" path="res://icon.svg" id="1_4xqjp"]
-[ext_resource type="PackedScene" uid="uid://c84woxsfa55j8" path="res://world_block.tscn" id="1_wrxy0"]
 [ext_resource type="Script" path="res://PointJumper.cs" id="3_jtceo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8c7v"]
@@ -29,14 +28,12 @@ size = Vector2(455, 150.5)
 gradient = SubResource("Gradient_c57b1")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_750xl"]
-size = Vector2(25.4878, 85.2184)
+size = Vector2(25.4878, 83.513)
 
 [sub_resource type="Gradient" id="Gradient_rnoh6"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a2vlg"]
 gradient = SubResource("Gradient_rnoh6")
-
-[sub_resource type="SystemFont" id="SystemFont_ucjr6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qbs20"]
 radius = 8.8889
@@ -47,7 +44,7 @@ height = 29.4118
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(668.47, 610)
+position = Vector2(2616, 598)
 scale = Vector2(1.8, 1)
 shape = SubResource("RectangleShape2D_n8c7v")
 
@@ -78,7 +75,8 @@ scale = Vector2(1.00781, 792.5)
 texture = SubResource("GradientTexture1D_klnae")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1257, -140)
+position = Vector2(1282, -47)
+scale = Vector2(2.16041, 0.323114)
 shape = SubResource("RectangleShape2D_msxhh")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D4"]
@@ -87,8 +85,8 @@ scale = Vector2(1.76172, 143)
 texture = SubResource("GradientTexture1D_fdplr")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2154, 199)
-scale = Vector2(8.2, 8.24)
+position = Vector2(2208, 28)
+scale = Vector2(8.2, 5.76979)
 shape = SubResource("RectangleShape2D_750xl")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D5"]
@@ -116,20 +114,10 @@ position = Vector2(-8.01086e-05, -0.250003)
 scale = Vector2(1.76172, 143)
 texture = SubResource("GradientTexture1D_fdplr")
 
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(3718, -851)
-scale = Vector2(5.39781, -0.153037)
-shape = SubResource("RectangleShape2D_spdah")
-
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D/CollisionShape2D8"]
-position = Vector2(-1, 35)
-scale = Vector2(1.00781, 792.5)
-texture = SubResource("GradientTexture1D_klnae")
-
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2022, -1688)
+position = Vector2(1880, -1490)
 rotation = -0.0597897
-scale = Vector2(1.22159, 0.472591)
+scale = Vector2(0.876078, 0.431724)
 shape = SubResource("RectangleShape2D_msxhh")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D9"]
@@ -137,21 +125,29 @@ position = Vector2(-8.01086e-05, -0.250003)
 scale = Vector2(1.76172, 143)
 texture = SubResource("GradientTexture1D_fdplr")
 
-[node name="WorldBlock" parent="StaticBody2D" node_paths=PackedStringArray("Polygon") instance=ExtResource("1_wrxy0")]
-position = Vector2(2088, -645)
-Polygon = NodePath("Polygon2D2")
-Font = SubResource("SystemFont_ucjr6")
-ShowDebug = true
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(5215, -898)
+scale = Vector2(8.2, 34.3885)
+shape = SubResource("RectangleShape2D_750xl")
 
-[node name="Polygon2D2" type="Polygon2D" parent="StaticBody2D/WorldBlock"]
-position = Vector2(1, 1)
-color = Color(1, 1, 1, 0.517647)
-polygon = PackedVector2Array(252.93, 17.3673, 127.929, 46.4489, 76.1431, 231.653, 295.358, 197.959)
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D10"]
+position = Vector2(0.060977, 0.230584)
+scale = Vector2(0.369665, 1.3084)
+texture = SubResource("GradientTexture2D_a2vlg")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(7051, -3690)
+scale = Vector2(1.37613, 1.07809)
+polygon = PackedVector2Array(-32.7002, 12.0583, 359.704, 501.814, -1497.67, 797.708, -1233.17, 365.461, -959.209, 186.441, -734.667, -136.353, -148.968, -132.642)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D2"]
+polygon = PackedVector2Array(-146.788, -136.353, -588.606, -133.57, -731.76, -133.57, -962.116, 184.586, -1238.98, 371.954, -1502.04, 803.273, 359.704, 501.814)
 
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
-position = Vector2(1365, -397)
+position = Vector2(3514, -1955)
 floor_stop_on_slope = false
-floor_max_angle = 0.698132
+floor_max_angle = 0.523599
+floor_snap_length = 10.1
 script = ExtResource("3_jtceo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]

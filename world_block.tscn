@@ -15,7 +15,6 @@ scale = Vector2(2.79999, 1.96)
 script = ExtResource("1_70rbf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(1, 0.875)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.0117647, 0.509804, 0.415686, 1)

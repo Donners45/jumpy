@@ -1,0 +1,33 @@
+- Improve folder structure
+	- probably reccomended ways to do this in godot
+	
+- Improve moving on downwards slopes
+	- currently sort of shoot off very quickly
+
+- Ideas
+
+	Boosts:
+		A short cooldown
+		A camera shake or spark burst
+		Limit boosts to one per jump/grapple/swing/etc
+
+	Grapple:
+		Visuals
+		Grapple set timer
+		Grapple cool down
+		Grapple ammo
+
+
+
+- Snippets
+
+	private Vector2 JumpTowardsMouse() {
+		Vector2 velocity = Velocity;
+		var mousePos = GetGlobalMousePosition();
+		var direction = (mousePos - GlobalPosition).Normalized();
+		velocity = direction * JumpForce;
+		velocity.Y -= JumpForce * 0.5f;
+
+		isJumping = true;
+		return velocity;
+	}
